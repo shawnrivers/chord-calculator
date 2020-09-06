@@ -55,7 +55,7 @@ const triadInterval: Record<TriadType, [number, number]> = {
   sus4: [5, 2]
 };
 
-export const getTriads = (baseNote: Key, type: TriadType): Key[] => {
+export const getTriadNotes = (baseNote: Key, type: TriadType): Key[] => {
   const baseNoteIndex = KEYS.indexOf(baseNote);
   const secondNoteIndex = (baseNoteIndex + triadInterval[type][0]) % octave;
   const thirdNoteIndex = (secondNoteIndex + triadInterval[type][1]) % octave;
