@@ -28,7 +28,7 @@ import Vue from 'vue';
 import { Key, Keys, KEYS, getNotes } from '@/utils/chords';
 
 export default Vue.extend({
-  name: 'ChordsCalculator',
+  name: 'ChordCalculator',
   props: {
     title: String
   },
