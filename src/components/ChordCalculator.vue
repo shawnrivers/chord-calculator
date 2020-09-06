@@ -39,7 +39,7 @@ export default Vue.extend({
     return {
       keys: KEYS,
       baseNote: 'C',
-      triadTypes: ['major', 'minor', 'aug', 'dim'],
+      triadTypes: ['major', 'minor', 'aug', 'dim', 'sus2', 'sus4'],
       triadType: 'major'
     };
   },

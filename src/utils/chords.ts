@@ -44,7 +44,7 @@ export const KEYS: Keys = [
 
 const octave = KEYS.length;
 
-export type TriadType = 'major' | 'minor' | 'aug' | 'dim';
+export type TriadType = 'major' | 'minor' | 'aug' | 'dim' | 'sus2' | 'sus4';
 
 export const getTriads = (baseNote: Key, type: TriadType): Key[] => {
   const baseIndex = KEYS.indexOf(baseNote);
@@ -67,6 +67,14 @@ export const getTriads = (baseNote: Key, type: TriadType): Key[] => {
     case 'dim':
       secondNote = KEYS[(baseIndex + 3) % octave];
       thirdNote = KEYS[(baseIndex + 6) % octave];
+      break;
+    case 'sus2':
+      secondNote = KEYS[(baseIndex + 2) % octave];
+      thirdNote = KEYS[(baseIndex + 7) % octave];
+      break;
+    case 'sus4':
+      secondNote = KEYS[(baseIndex + 5) % octave];
+      thirdNote = KEYS[(baseIndex + 7) % octave];
       break;
   }
 
