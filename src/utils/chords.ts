@@ -44,7 +44,7 @@ export const KEYS: Keys = [
 
 const octave = KEYS.length;
 
-export const getNotes = (baseNote: Key, major: boolean) => {
+export const getNotes = (baseNote: Key, major: boolean): Key[] => {
   const baseIndex = KEYS.indexOf(baseNote);
   let secondNote: Key;
   const thirdNote = KEYS[(baseIndex + 7) % octave];
@@ -57,5 +57,3 @@ export const getNotes = (baseNote: Key, major: boolean) => {
 
   return [baseNote, secondNote, thirdNote];
 };
-
-// export default getNotes;
