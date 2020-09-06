@@ -1,6 +1,7 @@
 <template>
   <div class="hello">
     <h1>{{ title }}</h1>
+    <h2>Chord</h2>
     <div>
       <label for="base-note">Base Note: {{ ' ' }}</label>
       <select id="base-note" v-model="baseNote">
@@ -8,10 +9,9 @@
       </select>
     </div>
     <div>
-      <label for="interval">Major / Minor: {{ ' ' }}</label>
-      <select id="interval" v-model="interval">
-        <option>major</option>
-        <option>minor</option>
+      <label for="triad">Triad: {{ ' ' }}</label>
+      <select id="triad" v-model="triadType">
+        <option v-for="type in triadTypes" :key="type">{{ type }}</option>
       </select>
     </div>
     <div>
@@ -25,7 +25,7 @@
 
 <script lang="ts">
 import Vue from 'vue';
-import { Key, Keys, KEYS, getNotes } from '@/utils/chords';
+import { Key, Keys, KEYS, TriadType, getTriads } from '@/utils/chords';
 
 export default Vue.extend({
   name: 'ChordCalculator',
@@ -35,13 +35,19 @@ export default Vue.extend({
   data(): {
     keys: Keys;
     baseNote: Key;
-    interval: 'major' | 'minor';
+    triadTypes: TriadType[];
+    triadType: TriadType;
   } {
-    return { keys: KEYS, baseNote: 'C', interval: 'major' };
+    return {
+      keys: KEYS,
+      baseNote: 'C',
+      triadTypes: ['major', 'minor', 'aug', 'dim'],
+      triadType: 'major'
+    };
   },
   computed: {
     notes(): Key[] {
-      return getNotes(this.baseNote, this.interval === 'major');
+      return getTriads(this.baseNote, this.triadType);
     }
   }
 });

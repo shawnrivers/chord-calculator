@@ -44,15 +44,30 @@ export const KEYS: Keys = [
 
 const octave = KEYS.length;
 
-export const getNotes = (baseNote: Key, major: boolean): Key[] => {
+export type TriadType = 'major' | 'minor' | 'aug' | 'dim';
+
+export const getTriads = (baseNote: Key, type: TriadType): Key[] => {
   const baseIndex = KEYS.indexOf(baseNote);
   let secondNote: Key;
-  const thirdNote = KEYS[(baseIndex + 7) % octave];
+  let thirdNote: Key;
 
-  if (major) {
-    secondNote = KEYS[(baseIndex + 4) % octave];
-  } else {
-    secondNote = KEYS[(baseIndex + 3) % octave];
+  switch (type) {
+    case 'major':
+      secondNote = KEYS[(baseIndex + 4) % octave];
+      thirdNote = KEYS[(baseIndex + 7) % octave];
+      break;
+    case 'minor':
+      secondNote = KEYS[(baseIndex + 3) % octave];
+      thirdNote = KEYS[(baseIndex + 7) % octave];
+      break;
+    case 'aug':
+      secondNote = KEYS[(baseIndex + 4) % octave];
+      thirdNote = KEYS[(baseIndex + 8) % octave];
+      break;
+    case 'dim':
+      secondNote = KEYS[(baseIndex + 3) % octave];
+      thirdNote = KEYS[(baseIndex + 6) % octave];
+      break;
   }
 
   return [baseNote, secondNote, thirdNote];
