@@ -13,6 +13,10 @@
       </select>
     </div>
     <div>
+      <h2>Symbol</h2>
+      <p>{{ symbol }}</p>
+    </div>
+    <div>
       <h2>Notes</h2>
       <ul class="item">
         <li v-for="note in notes" :key="note">{{ note }}</li>
@@ -23,7 +27,14 @@
 
 <script lang="ts">
 import Vue from 'vue';
-import { Key, Keys, KEYS, TriadType, getTriadNotes } from '@/utils/chords';
+import {
+  Key,
+  Keys,
+  KEYS,
+  TriadType,
+  getTriadNotes,
+  getTriadSymbol
+} from '@/utils/chords';
 
 export default Vue.extend({
   name: 'ChordCalculator',
@@ -35,17 +46,22 @@ export default Vue.extend({
     baseNote: Key;
     triadTypes: TriadType[];
     triadType: TriadType;
+    triadSymbol: string;
   } {
     return {
       keys: KEYS,
       baseNote: 'C',
       triadTypes: ['major', 'minor', 'aug', 'dim', 'sus2', 'sus4'],
-      triadType: 'major'
+      triadType: 'major',
+      triadSymbol: 'C'
     };
   },
   computed: {
     notes(): Key[] {
       return getTriadNotes(this.baseNote, this.triadType);
+    },
+    symbol(): string {
+      return getTriadSymbol(this.baseNote, this.triadType);
     }
   }
 });

@@ -62,3 +62,14 @@ export const getTriadNotes = (baseNote: Key, type: TriadType): Key[] => {
 
   return [baseNote, KEYS[secondNoteIndex], KEYS[thirdNoteIndex]];
 };
+
+export const getTriadSymbol = (baseNote: Key, type: TriadType): string => {
+  if (type === 'major') {
+    return baseNote;
+  }
+  if (type === 'minor') {
+    return `${baseNote}m`;
+  }
+
+  return `${baseNote}${type}`;
+};
