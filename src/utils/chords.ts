@@ -46,37 +46,19 @@ const octave = KEYS.length;
 
 export type TriadType = 'major' | 'minor' | 'aug' | 'dim' | 'sus2' | 'sus4';
 
+const triadInterval: Record<TriadType, [number, number]> = {
+  major: [4, 3],
+  minor: [3, 4],
+  aug: [4, 4],
+  dim: [3, 3],
+  sus2: [2, 5],
+  sus4: [5, 2]
+};
+
 export const getTriads = (baseNote: Key, type: TriadType): Key[] => {
-  const baseIndex = KEYS.indexOf(baseNote);
-  let secondNote: Key;
-  let thirdNote: Key;
+  const baseNoteIndex = KEYS.indexOf(baseNote);
+  const secondNoteIndex = (baseNoteIndex + triadInterval[type][0]) % octave;
+  const thirdNoteIndex = (secondNoteIndex + triadInterval[type][1]) % octave;
 
-  switch (type) {
-    case 'major':
-      secondNote = KEYS[(baseIndex + 4) % octave];
-      thirdNote = KEYS[(baseIndex + 7) % octave];
-      break;
-    case 'minor':
-      secondNote = KEYS[(baseIndex + 3) % octave];
-      thirdNote = KEYS[(baseIndex + 7) % octave];
-      break;
-    case 'aug':
-      secondNote = KEYS[(baseIndex + 4) % octave];
-      thirdNote = KEYS[(baseIndex + 8) % octave];
-      break;
-    case 'dim':
-      secondNote = KEYS[(baseIndex + 3) % octave];
-      thirdNote = KEYS[(baseIndex + 6) % octave];
-      break;
-    case 'sus2':
-      secondNote = KEYS[(baseIndex + 2) % octave];
-      thirdNote = KEYS[(baseIndex + 7) % octave];
-      break;
-    case 'sus4':
-      secondNote = KEYS[(baseIndex + 5) % octave];
-      thirdNote = KEYS[(baseIndex + 7) % octave];
-      break;
-  }
-
-  return [baseNote, secondNote, thirdNote];
+  return [baseNote, KEYS[secondNoteIndex], KEYS[thirdNoteIndex]];
 };
