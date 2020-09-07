@@ -41,18 +41,6 @@ export default Vue.extend({
       scaleType: 'major'
     };
   },
-  methods: {
-    changeHomeNote(event: Event) {
-      if (event.target instanceof HTMLSelectElement) {
-        this.homeNote = event.target.value as Note;
-      }
-    },
-    changeScaleType(event: Event) {
-      if (event.target instanceof HTMLSelectElement) {
-        this.scaleType = event.target.value as ScaleType;
-      }
-    }
-  },
   computed: {
     notes(): Note[] {
       return getScales(this.homeNote, this.scaleType);
