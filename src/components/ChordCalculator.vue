@@ -27,14 +27,8 @@
 
 <script lang="ts">
 import Vue from 'vue';
-import {
-  Key,
-  Keys,
-  KEYS,
-  TriadType,
-  getTriadNotes,
-  getTriadSymbol
-} from '@/utils/chords';
+import { Note, Notes, NOTES } from '@/utils/constants';
+import { TriadType, getTriadNotes, getTriadSymbol } from '@/utils/chords';
 
 export default Vue.extend({
   name: 'ChordCalculator',
@@ -42,14 +36,14 @@ export default Vue.extend({
     title: String
   },
   data(): {
-    keys: Keys;
-    baseNote: Key;
+    keys: Notes;
+    baseNote: Note;
     triadTypes: TriadType[];
     triadType: TriadType;
     triadSymbol: string;
   } {
     return {
-      keys: KEYS,
+      keys: NOTES,
       baseNote: 'C',
       triadTypes: ['major', 'minor', 'aug', 'dim', 'sus2', 'sus4'],
       triadType: 'major',
@@ -57,7 +51,7 @@ export default Vue.extend({
     };
   },
   computed: {
-    notes(): Key[] {
+    notes(): Note[] {
       return getTriadNotes(this.baseNote, this.triadType);
     },
     symbol(): string {

@@ -1,52 +1,8 @@
-export type Key =
-  | 'C'
-  | 'C#'
-  | 'D'
-  | 'D#'
-  | 'E'
-  | 'F'
-  | 'F#'
-  | 'G'
-  | 'G#'
-  | 'A'
-  | 'A#'
-  | 'B';
-
-export type Keys = [
-  'C',
-  'C#',
-  'D',
-  'D#',
-  'E',
-  'F',
-  'F#',
-  'G',
-  'G#',
-  'A',
-  'A#',
-  'B'
-];
-
-export const KEYS: Keys = [
-  'C',
-  'C#',
-  'D',
-  'D#',
-  'E',
-  'F',
-  'F#',
-  'G',
-  'G#',
-  'A',
-  'A#',
-  'B'
-];
-
-const octave = KEYS.length;
+import { Note, NOTES, OCTAVE } from './constants';
 
 export type TriadType = 'major' | 'minor' | 'aug' | 'dim' | 'sus2' | 'sus4';
 
-const triadInterval: Record<TriadType, [number, number]> = {
+const triadIntervals: Record<TriadType, [number, number]> = {
   major: [4, 3],
   minor: [3, 4],
   aug: [4, 4],
@@ -55,15 +11,18 @@ const triadInterval: Record<TriadType, [number, number]> = {
   sus4: [5, 2]
 };
 
-export const getTriadNotes = (baseNote: Key, type: TriadType): Key[] => {
-  const baseNoteIndex = KEYS.indexOf(baseNote);
-  const secondNoteIndex = (baseNoteIndex + triadInterval[type][0]) % octave;
-  const thirdNoteIndex = (secondNoteIndex + triadInterval[type][1]) % octave;
+export const getTriadNotes = (
+  baseNote: Note,
+  type: TriadType
+): [Note, Note, Note] => {
+  const baseNoteIndex = NOTES.indexOf(baseNote);
+  const secondNoteIndex = (baseNoteIndex + triadIntervals[type][0]) % OCTAVE;
+  const thirdNoteIndex = (secondNoteIndex + triadIntervals[type][1]) % OCTAVE;
 
-  return [baseNote, KEYS[secondNoteIndex], KEYS[thirdNoteIndex]];
+  return [baseNote, NOTES[secondNoteIndex], NOTES[thirdNoteIndex]];
 };
 
-export const getTriadSymbol = (baseNote: Key, type: TriadType): string => {
+export const getTriadSymbol = (baseNote: Note, type: TriadType): string => {
   if (type === 'major') {
     return baseNote;
   }

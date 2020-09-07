@@ -1,7 +1,8 @@
-import { Key, Keys, KEYS, TriadType, getTriadNotes } from '@/utils/chords';
+import { Note } from '@/utils/constants';
+import { TriadType, getTriadNotes } from '@/utils/chords';
 
 describe('getTriadNotes', () => {
-  const table: [Key, TriadType, Key[]][] = [
+  const table: [Note, TriadType, Note[]][] = [
     ['C', 'major', ['C', 'E', 'G']],
     ['C', 'minor', ['C', 'D#', 'G']],
     ['C', 'aug', ['C', 'E', 'G#']],
@@ -10,7 +11,7 @@ describe('getTriadNotes', () => {
     ['C', 'sus4', ['C', 'F', 'G']]
   ];
 
-  test.each(table)('%s %s', (baseNote, triadType, expectedNotes) => {
+  test.each(table)('%s %s chord', (baseNote, triadType, expectedNotes) => {
     expect(getTriadNotes(baseNote, triadType)).toEqual(expectedNotes);
   });
 });
