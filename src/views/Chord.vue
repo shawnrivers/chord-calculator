@@ -2,7 +2,7 @@
   <div>
     <h1>Chord Calculator</h1>
     <h2>Chord</h2>
-    <div class="chord-settings">
+    <div class="settings">
       <label for="base-note">Base Note: {{ ' ' }}</label>
       <select id="base-note" v-model="baseNote">
         <option v-for="note in allNotes" :key="note">{{ note }}</option>

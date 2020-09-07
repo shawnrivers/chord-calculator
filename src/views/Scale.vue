@@ -2,7 +2,7 @@
   <div>
     <h1>Scale Calculator</h1>
     <h2>Key</h2>
-    <div class="chord-settings">
+    <div class="settings">
       <label for="home-note">Home Note: {{ ' ' }}</label>
       <select id="home-note" v-model="homeNote">
         <option v-for="note in allNotes" :key="note">{{ note }}</option>

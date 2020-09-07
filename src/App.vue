@@ -43,7 +43,7 @@ a {
   color: #42b983;
 }
 
-.chord-settings {
+.settings {
   display: grid;
   grid-template-columns: max-content max-content;
   grid-gap: 8px 4px;
