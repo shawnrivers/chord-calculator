@@ -1,6 +1,6 @@
 <template>
-  <div class="hello">
-    <h1>{{ title }}</h1>
+  <div>
+    <h1>Chord Calculator</h1>
     <h2>Chord</h2>
     <div class="chord-settings">
       <label for="base-note">Base Note: {{ ' ' }}</label>
@@ -31,10 +31,7 @@ import { Note, Notes, NOTES } from '@/utils/constants';
 import { TriadType, getTriadNotes, getTriadSymbol } from '@/utils/chords';
 
 export default Vue.extend({
-  name: 'ChordCalculator',
-  props: {
-    title: String
-  },
+  name: 'Chord',
   data(): {
     allNotes: Notes;
     baseNote: Note;
@@ -60,27 +57,3 @@ export default Vue.extend({
   }
 });
 </script>
-
-<style scoped lang="scss">
-ul {
-  list-style-type: none;
-  padding: 0;
-}
-li {
-  display: inline-block;
-  margin: 0 0.5em;
-}
-a {
-  color: #42b983;
-}
-.chord-settings {
-  display: grid;
-  grid-template-columns: max-content max-content;
-  grid-gap: 8px 4px;
-  justify-content: center;
-
-  label {
-    justify-self: end;
-  }
-}
-</style>

@@ -1,7 +1,8 @@
 <template>
   <div id="app">
     <div id="nav">
-      <router-link to="/">Chord</router-link> |
+      <router-link to="/">Chord</router-link>
+      {{ ' | ' }}
       <router-link to="/scale">Scale</router-link>
     </div>
     <router-view />
@@ -27,6 +28,29 @@
     &.router-link-exact-active {
       color: #42b983;
     }
+  }
+}
+
+ul {
+  list-style-type: none;
+  padding: 0;
+}
+li {
+  display: inline-block;
+  margin: 0 0.5em;
+}
+a {
+  color: #42b983;
+}
+
+.chord-settings {
+  display: grid;
+  grid-template-columns: max-content max-content;
+  grid-gap: 8px 4px;
+  justify-content: center;
+
+  label {
+    justify-self: end;
   }
 }
 </style>
