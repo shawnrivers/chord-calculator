@@ -1,25 +1,21 @@
 <template>
-  <div class="hello">
+  <div>
     <h1>{{ title }}</h1>
-    <h2>Chord</h2>
+    <h2>Key</h2>
     <div class="chord-settings">
-      <label for="base-note">Base Note: {{ ' ' }}</label>
-      <select id="base-note" v-model="baseNote">
+      <label for="home-note">Home Note: {{ ' ' }}</label>
+      <select id="home-note" v-model="homeNote">
         <option v-for="note in allNotes" :key="note">{{ note }}</option>
       </select>
-      <label for="triad">Triad: {{ ' ' }}</label>
-      <select id="triad" v-model="triadType">
-        <option v-for="type in triadTypes" :key="type">{{ type }}</option>
+      <label for="type">Type: {{ ' ' }}</label>
+      <select id="type" v-model="scaleType">
+        <option v-for="type in scaleTypes" :key="type">{{ type }}</option>
       </select>
-    </div>
-    <div>
-      <h2>Symbol</h2>
-      <p>{{ symbol }}</p>
     </div>
     <div>
       <h2>Notes</h2>
       <ul>
-        <li v-for="note in notes" :key="note">{{ note }}</li>
+        <li v-for="(note, index) in notes" :key="index">{{ note }}</li>
       </ul>
     </div>
   </div>
@@ -28,7 +24,7 @@
 <script lang="ts">
 import Vue from 'vue';
 import { Note, Notes, NOTES } from '@/utils/constants';
-import { TriadType, getTriadNotes, getTriadSymbol } from '@/utils/chords';
+import { ScaleType, getScales } from '@/utils/scales';
 
 export default Vue.extend({
   name: 'ChordCalculator',
@@ -37,25 +33,20 @@ export default Vue.extend({
   },
   data(): {
     allNotes: Notes;
-    baseNote: Note;
-    triadTypes: TriadType[];
-    triadType: TriadType;
-    triadSymbol: string;
+    homeNote: Note;
+    scaleTypes: ScaleType[];
+    scaleType: ScaleType;
   } {
     return {
       allNotes: NOTES,
-      baseNote: 'C',
-      triadTypes: ['major', 'minor', 'aug', 'dim', 'sus2', 'sus4'],
-      triadType: 'major',
-      triadSymbol: 'C'
+      homeNote: 'C',
+      scaleTypes: ['major', 'minor'],
+      scaleType: 'major'
     };
   },
   computed: {
     notes(): Note[] {
-      return getTriadNotes(this.baseNote, this.triadType);
-    },
-    symbol(): string {
-      return getTriadSymbol(this.baseNote, this.triadType);
+      return getScales(this.homeNote, this.scaleType);
     }
   }
 });

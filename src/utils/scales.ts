@@ -16,11 +16,11 @@ const accumulatedIntervals: Record<ScaleType, number[]> = {
   )
 };
 
-export const getScales = (baseNote: Note, type: ScaleType): Note[] => {
-  const startIndex = NOTES.indexOf(baseNote);
+export const getScales = (homeNote: Note, type: ScaleType): Note[] => {
+  const startIndex = NOTES.indexOf(homeNote);
 
   return [
-    baseNote,
+    homeNote,
     ...accumulatedIntervals[type].map(
       interval => NOTES[(startIndex + interval) % OCTAVE]
     )
