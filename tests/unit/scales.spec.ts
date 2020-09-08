@@ -40,7 +40,7 @@ describe('getChordFromScale', () => {
     ]
   ];
 
-  test.skip.each(table)(
+  test.each(table)(
     '%s %s scale %d chord',
     (baseNote, scaleType, number, expectedChord) => {
       expect(getChordFromScale(baseNote, scaleType, number)).toEqual(
