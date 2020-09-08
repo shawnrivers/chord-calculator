@@ -18,7 +18,7 @@
     </div>
     <div>
       <h2>Notes</h2>
-      <ul>
+      <ul class="notes">
         <li v-for="note in notes" :key="note">{{ note }}</li>
       </ul>
     </div>
@@ -57,3 +57,12 @@ export default Vue.extend({
   }
 });
 </script>
+
+<style lang="scss" scoped>
+.notes {
+  display: grid;
+  grid-template-columns: repeat(3, max-content);
+  grid-gap: 4px;
+  justify-content: center;
+}
+</style>

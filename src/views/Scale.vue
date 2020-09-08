@@ -14,7 +14,7 @@
     </div>
     <div>
       <h2>Notes</h2>
-      <ul>
+      <ul class="notes">
         <li v-for="(note, index) in notes" :key="index">
           <div class="note">
             <span>{{ index + 1 }}</span>
@@ -25,7 +25,7 @@
     </div>
     <div>
       <h2>Chords</h2>
-      <ul>
+      <ul class="notes">
         <li v-for="(chord, index) in chords" :key="index">
           <div class="note">
             <span>{{ index + 1 }}</span>
@@ -88,6 +88,13 @@ export default Vue.extend({
 </script>
 
 <style lang="scss" scoped>
+.notes {
+  display: grid;
+  grid-template-columns: repeat(7, max-content);
+  grid-gap: 4px;
+  justify-content: center;
+}
+
 .note {
   display: flex;
   flex-direction: column;
