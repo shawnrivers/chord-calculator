@@ -15,7 +15,23 @@
     <div>
       <h2>Notes</h2>
       <ul>
-        <li v-for="(note, index) in notes" :key="index">{{ note }}</li>
+        <li v-for="(note, index) in notes" :key="index">
+          <div class="note">
+            <span>{{ index + 1 }}</span>
+            <span>{{ note }}</span>
+          </div>
+        </li>
+      </ul>
+    </div>
+    <div>
+      <h2>Chords</h2>
+      <ul>
+        <li v-for="(chord, index) in chords" :key="index">
+          <div class="note">
+            <span>{{ index + 1 }}</span>
+            <span>{{ chord.symbol }}</span>
+          </div>
+        </li>
       </ul>
     </div>
   </div>
@@ -24,7 +40,14 @@
 <script lang="ts">
 import Vue from 'vue';
 import { Note, Notes, NOTES } from '@/utils/constants';
-import { ScaleType, getScales } from '@/utils/scales';
+import {
+  ScaleType,
+  getScaleNotes,
+  TriadChord,
+  numOfScaleNotes,
+  getChordFromScale,
+  ChordNumber
+} from '@/utils/scales';
 
 export default Vue.extend({
   name: 'Scale',
@@ -43,8 +66,35 @@ export default Vue.extend({
   },
   computed: {
     notes(): Note[] {
-      return getScales(this.homeNote, this.scaleType);
+      return getScaleNotes(this.homeNote, this.scaleType);
+    },
+    chords(): TriadChord[] {
+      const chords: TriadChord[] = [];
+
+      for (let i = 0; i < numOfScaleNotes; i++) {
+        chords.push(
+          getChordFromScale(
+            this.homeNote,
+            this.scaleType,
+            (i + 1) as ChordNumber
+          )
+        );
+      }
+
+      return chords;
     }
   }
 });
 </script>
+
+<style lang="scss" scoped>
+.note {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  & > *:first-of-type {
+    font-size: 0.8rem;
+  }
+}
+</style>
