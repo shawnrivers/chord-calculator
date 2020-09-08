@@ -1,5 +1,5 @@
-import { Note, NOTES, OCTAVE } from './constants';
-import { getScaleNotes, numOfScaleNotes, ScaleType } from './scales';
+import { Note, NOTES } from './constants';
+import { getScaleNotes, ScaleType } from './scales';
 
 export const addInterval = (
   note: Note,

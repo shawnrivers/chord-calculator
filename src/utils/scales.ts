@@ -1,6 +1,6 @@
-import { getTriadSymbol, getTriadType, triadIntervals } from './chords';
-import { Note, NOTES, OCTAVE } from './constants';
-import { addInterval, addNoteInterval, getInterval } from './notes';
+import { getTriadSymbol, getTriadType } from './chords';
+import { Note } from './constants';
+import { addInterval, addNoteInterval } from './notes';
 
 export type ScaleType = 'major' | 'minor';
 
@@ -9,15 +9,6 @@ export const numOfScaleNotes = 7;
 const scaleIntervals: Record<ScaleType, number[]> = {
   major: [2, 2, 1, 2, 2, 2, 1],
   minor: [2, 1, 2, 2, 1, 2, 2]
-};
-
-const accumulatedIntervals: Record<ScaleType, number[]> = {
-  major: scaleIntervals.major.map((_, index) =>
-    scaleIntervals.major.slice(0, index + 1).reduce((acc, curr) => acc + curr)
-  ),
-  minor: scaleIntervals.minor.map((_, index) =>
-    scaleIntervals.minor.slice(0, index + 1).reduce((acc, curr) => acc + curr)
-  )
 };
 
 export const getScaleNotes = (homeNote: Note, type: ScaleType): Note[] => {
