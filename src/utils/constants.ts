@@ -41,5 +41,3 @@ export const NOTES: Notes = [
   'A#',
   'B'
 ];
-
-export const OCTAVE = NOTES.length;

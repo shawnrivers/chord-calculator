@@ -1,4 +1,4 @@
-import { Note, Notes, NOTES } from '@/utils/constants';
+import { Note } from '@/utils/constants';
 import {
   ChordNumber,
   getChordFromScale,
