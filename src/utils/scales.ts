@@ -15,7 +15,7 @@ export const getScaleNotes = (homeNote: Note, type: ScaleType): Note[] => {
   const notes: Note[] = [homeNote];
   const intervals = scaleIntervals[type];
 
-  for (let i = 0; i < scaleIntervals.major.length - 1; i++) {
+  for (let i = 0; i < intervals.length - 1; i++) {
     const prevNote = notes[i];
     notes.push(addNoteInterval(prevNote, intervals[i]));
   }

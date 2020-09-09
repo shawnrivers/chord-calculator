@@ -14,9 +14,9 @@
     </div>
     <div>
       <h2>Notes</h2>
-      <ul class="notes">
+      <ul class="items">
         <li v-for="(note, index) in notes" :key="index">
-          <div class="note">
+          <div class="item">
             <span>{{ index + 1 }}</span>
             <span>{{ note }}</span>
           </div>
@@ -25,9 +25,9 @@
     </div>
     <div>
       <h2>Chords</h2>
-      <ul class="notes">
+      <ul class="items">
         <li v-for="(chord, index) in chords" :key="index">
-          <div class="note">
+          <div class="item">
             <span>{{ index + 1 }}</span>
             <span>{{ chord.symbol }}</span>
           </div>
@@ -88,14 +88,14 @@ export default Vue.extend({
 </script>
 
 <style lang="scss" scoped>
-.notes {
+.items {
   display: grid;
   grid-template-columns: repeat(7, max-content);
   grid-gap: 4px;
   justify-content: center;
 }
 
-.note {
+.item {
   display: flex;
   flex-direction: column;
   align-items: center;

@@ -18,7 +18,7 @@
     </div>
     <div>
       <h2>Notes</h2>
-      <ul class="notes">
+      <ul class="items">
         <li v-for="note in notes" :key="note">{{ note }}</li>
       </ul>
     </div>
@@ -59,7 +59,7 @@ export default Vue.extend({
 </script>
 
 <style lang="scss" scoped>
-.notes {
+.items {
   display: grid;
   grid-template-columns: repeat(3, max-content);
   grid-gap: 4px;
