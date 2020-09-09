@@ -46,11 +46,31 @@ a {
 .settings {
   display: grid;
   grid-template-columns: max-content max-content;
-  grid-gap: 8px 4px;
+  grid-gap: 0.6em 0.3em;
   justify-content: center;
 
   label {
     justify-self: end;
+  }
+}
+
+.items {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+
+  & > * {
+    margin: 0.2em 0.6em;
+  }
+}
+
+.item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  & > *:first-of-type {
+    font-size: 0.8rem;
   }
 }
 </style>

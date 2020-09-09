@@ -86,22 +86,3 @@ export default Vue.extend({
   }
 });
 </script>
-
-<style lang="scss" scoped>
-.items {
-  display: grid;
-  grid-template-columns: repeat(7, max-content);
-  grid-gap: 4px;
-  justify-content: center;
-}
-
-.item {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-
-  & > *:first-of-type {
-    font-size: 0.8rem;
-  }
-}
-</style>

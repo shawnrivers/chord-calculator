@@ -7,7 +7,7 @@
       <select id="base-note" v-model="baseNote">
         <option v-for="note in allNotes" :key="note">{{ note }}</option>
       </select>
-      <label for="triad">Triad: {{ ' ' }}</label>
+      <label for="triad">Type: {{ ' ' }}</label>
       <select id="triad" v-model="triadType">
         <option v-for="type in triadTypes" :key="type">{{ type }}</option>
       </select>
@@ -57,12 +57,3 @@ export default Vue.extend({
   }
 });
 </script>
-
-<style lang="scss" scoped>
-.items {
-  display: grid;
-  grid-template-columns: repeat(3, max-content);
-  grid-gap: 4px;
-  justify-content: center;
-}
-</style>
