@@ -1,6 +1,35 @@
 import { Note, NOTES } from '@/utils/constants';
-import { addNoteInterval, getInterval } from '@/utils/notes';
+import { addInterval, addNoteInterval, getInterval } from '@/utils/notes';
 import { getScaleNotes } from '@/utils/scales';
+
+describe('addInterval', () => {
+  type FuncParameters = Parameters<typeof addInterval>;
+
+  const table: [
+    FuncParameters[0],
+    FuncParameters[1],
+    FuncParameters[2],
+    Note
+  ][] = [
+    ['C', 4, NOTES, 'E'],
+    ['B', 3, NOTES, 'D'],
+    ['C', 3, getScaleNotes('F', 'major'), 'F'],
+    ['B', 4, getScaleNotes('A', 'major'), 'F#']
+  ];
+
+  test.each(table)(
+    '%s + %d in %p should be %s',
+    (note, interval, noteList, expectedNote) => {
+      expect(addInterval(note, interval, noteList)).toEqual(expectedNote);
+    }
+  );
+
+  it('Passing note out of the note list should throw an Error', () => {
+    expect(() => {
+      addInterval('C#', 4, getScaleNotes('C', 'minor'));
+    }).toThrow();
+  });
+});
 
 describe('addNoteInterval', () => {
   type FuncParameters = Parameters<typeof addNoteInterval>;
@@ -10,9 +39,12 @@ describe('addNoteInterval', () => {
     ['B', 3, 'D']
   ];
 
-  test.each(table)('%s + %d', (baseNote, noteInterval, expectedNote) => {
-    expect(addNoteInterval(baseNote, noteInterval)).toEqual(expectedNote);
-  });
+  test.each(table)(
+    '%s + %d should be %s',
+    (baseNote, noteInterval, expectedNote) => {
+      expect(addNoteInterval(baseNote, noteInterval)).toEqual(expectedNote);
+    }
+  );
 });
 
 describe('getInterval', () => {
