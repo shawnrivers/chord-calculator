@@ -7,15 +7,18 @@ import {
   TriadChord
 } from '@/utils/scales';
 
-describe('getScales', () => {
+describe('getScaleNotes', () => {
   const table: [Note, ScaleType, Note[]][] = [
     ['C', 'major', ['C', 'D', 'E', 'F', 'G', 'A', 'B']],
     ['C', 'minor', ['C', 'D', 'D#', 'F', 'G', 'G#', 'A#']]
   ];
 
-  test.each(table)('%s %s scale', (baseNote, scaleType, expectedNotes) => {
-    expect(getScaleNotes(baseNote, scaleType)).toEqual(expectedNotes);
-  });
+  test.each(table)(
+    '%s %s scale notes should be %p',
+    (baseNote, scaleType, expectedNotes) => {
+      expect(getScaleNotes(baseNote, scaleType)).toEqual(expectedNotes);
+    }
+  );
 });
 
 describe('getChordFromScale', () => {
@@ -41,7 +44,7 @@ describe('getChordFromScale', () => {
   ];
 
   test.each(table)(
-    '%s %s scale %d chord',
+    '%s %s scale %d chord should be %p',
     (baseNote, scaleType, number, expectedChord) => {
       expect(getChordFromScale(baseNote, scaleType, number)).toEqual(
         expectedChord

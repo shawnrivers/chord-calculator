@@ -11,7 +11,10 @@ describe('getTriadNotes', () => {
     ['C', 'sus4', ['C', 'F', 'G']]
   ];
 
-  test.each(table)('%s %s chord', (baseNote, triadType, expectedNotes) => {
-    expect(getTriadNotes(baseNote, triadType)).toEqual(expectedNotes);
-  });
+  test.each(table)(
+    '%s %s chord should be %p',
+    (baseNote, triadType, expectedNotes) => {
+      expect(getTriadNotes(baseNote, triadType)).toEqual(expectedNotes);
+    }
+  );
 });
