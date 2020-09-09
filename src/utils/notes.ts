@@ -1,5 +1,4 @@
 import { Note, NOTES } from './constants';
-import { getScaleNotes, ScaleType } from './scales';
 
 export const addInterval = (
   note: Note,
@@ -21,19 +20,6 @@ export const addInterval = (
 
 export const addNoteInterval = (note: Note, noteInterval: number): Note => {
   return addInterval(note, noteInterval, NOTES);
-};
-
-export const addScaleInterval = (
-  note: Note,
-  indexInterval: number,
-  key: {
-    homeNote: Note;
-    type: ScaleType;
-  }
-): Note => {
-  const notesInScale = getScaleNotes(key.homeNote, key.type);
-
-  return addInterval(note, indexInterval, notesInScale);
 };
 
 export const getInterval = (
