@@ -1,5 +1,5 @@
-import { Note, NOTES, OCTAVE } from './constants';
-import { getInterval } from './notes';
+import { Note, NOTES } from './constants';
+import { addNoteInterval, getInterval } from './notes';
 
 export type TriadType = 'major' | 'minor' | 'aug' | 'dim' | 'sus2' | 'sus4';
 
@@ -16,11 +16,10 @@ export const getTriadNotes = (
   baseNote: Note,
   type: TriadType
 ): [Note, Note, Note] => {
-  const baseNoteIndex = NOTES.indexOf(baseNote);
-  const secondNoteIndex = (baseNoteIndex + triadIntervals[type][0]) % OCTAVE;
-  const thirdNoteIndex = (secondNoteIndex + triadIntervals[type][1]) % OCTAVE;
+  const secondNote = addNoteInterval(baseNote, triadIntervals[type][0]);
+  const thirdNote = addNoteInterval(secondNote, triadIntervals[type][1]);
 
-  return [baseNote, NOTES[secondNoteIndex], NOTES[thirdNoteIndex]];
+  return [baseNote, secondNote, thirdNote];
 };
 
 export const getTriadType = (
