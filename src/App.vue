@@ -35,22 +35,36 @@ ul {
   list-style-type: none;
   padding: 0;
 }
+
 li {
   display: inline-block;
   margin: 0 0.5em;
 }
+
 a {
   color: #42b983;
+}
+
+p,
+label,
+select {
+  font-size: 16px;
 }
 
 .settings {
   display: grid;
   grid-template-columns: max-content max-content;
-  grid-gap: 0.6em 0.3em;
+  grid-gap: 0.2em 0.4em;
   justify-content: center;
 
   label {
     justify-self: end;
+    align-self: center;
+  }
+
+  select {
+    justify-self: start;
+    align-self: center;
   }
 }
 
