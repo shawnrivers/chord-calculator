@@ -3,14 +3,12 @@
     <h1>Chord Calculator</h1>
     <h2>Chord</h2>
     <div class="settings">
-      <label for="base-note">Base Note: {{ ' ' }}</label>
-      <select id="base-note" v-model="baseNote">
-        <option v-for="note in allNotes" :key="note">{{ note }}</option>
-      </select>
-      <label for="triad">Type: {{ ' ' }}</label>
-      <select id="triad" v-model="triadType">
-        <option v-for="type in triadTypes" :key="type">{{ type }}</option>
-      </select>
+      <Setting
+        label="Base Note"
+        :options="allNotes"
+        @change="onChangeBaseNote"
+      />
+      <Setting label="Type" :options="triadTypes" @change="onChangeType" />
     </div>
     <div>
       <h2>Symbol</h2>
@@ -29,9 +27,13 @@
 import Vue from 'vue';
 import { Note, Notes, NOTES } from '@/utils/constants';
 import { TriadType, getTriadNotes, getTriadSymbol } from '@/utils/chords';
+import Setting from '@/components/Setting.vue';
 
 export default Vue.extend({
   name: 'Chord',
+  components: {
+    Setting
+  },
   data(): {
     allNotes: Notes;
     baseNote: Note;
@@ -53,6 +55,14 @@ export default Vue.extend({
     },
     symbol(): string {
       return getTriadSymbol(this.baseNote, this.triadType);
+    }
+  },
+  methods: {
+    onChangeBaseNote(value: Note) {
+      this.baseNote = value;
+    },
+    onChangeType(value: TriadType) {
+      this.triadType = value;
     }
   }
 });

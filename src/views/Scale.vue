@@ -3,14 +3,12 @@
     <h1>Scale Calculator</h1>
     <h2>Key</h2>
     <div class="settings">
-      <label for="home-note">Home Note: {{ ' ' }}</label>
-      <select id="home-note" v-model="homeNote">
-        <option v-for="note in allNotes" :key="note">{{ note }}</option>
-      </select>
-      <label for="type">Type: {{ ' ' }}</label>
-      <select id="type" v-model="scaleType">
-        <option v-for="type in scaleTypes" :key="type">{{ type }}</option>
-      </select>
+      <Setting
+        label="Home Note"
+        :options="allNotes"
+        @change="onChangeHomeNote"
+      />
+      <Setting label="Type" :options="scaleTypes" @change="onChangeType" />
     </div>
     <div>
       <h2>Notes</h2>
@@ -48,9 +46,13 @@ import {
   getChordFromScale,
   ChordNumber
 } from '@/utils/scales';
+import Setting from '@/components/Setting.vue';
 
 export default Vue.extend({
   name: 'Scale',
+  components: {
+    Setting
+  },
   data(): {
     allNotes: Notes;
     homeNote: Note;
@@ -82,6 +84,14 @@ export default Vue.extend({
       }
 
       return chords;
+    }
+  },
+  methods: {
+    onChangeHomeNote(value: Note) {
+      this.homeNote = value;
+    },
+    onChangeType(value: ScaleType) {
+      this.scaleType = value;
     }
   }
 });
