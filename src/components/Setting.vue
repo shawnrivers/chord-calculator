@@ -8,8 +8,7 @@
 </template>
 
 <script lang="ts">
-import { TriadType } from '@/utils/chords';
-import Vue, { PropType } from 'vue';
+import Vue from 'vue';
 
 export default Vue.extend({
   name: 'Setting',
@@ -19,7 +18,7 @@ export default Vue.extend({
       required: true
     },
     options: {
-      type: Array as PropType<TriadType[]>,
+      type: Array,
       required: true
     }
   }
