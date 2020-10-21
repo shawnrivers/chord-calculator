@@ -27,19 +27,10 @@ export default Vue.extend({
 
 <style lang="scss" scoped>
 .setting {
-  display: grid;
-  grid-template-columns: max-content max-content;
-  grid-gap: 0.2em 0.4em;
-  justify-content: center;
+  display: flex;
 
-  label {
-    justify-self: end;
-    align-self: center;
-  }
-
-  select {
-    justify-self: start;
-    align-self: center;
+  & > *:not(:last-child) {
+    margin-right: 0.5em;
   }
 }
 </style>

@@ -66,7 +66,7 @@ select {
   flex-direction: column;
   align-items: center;
 
-  & > *:first-of-type {
+  & > *:first-child {
     font-size: 0.8rem;
   }
 }
