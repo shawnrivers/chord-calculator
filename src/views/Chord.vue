@@ -2,7 +2,7 @@
   <div>
     <h1>Chord Calculator</h1>
     <h2>Chord</h2>
-    <div class="settings">
+    <div class="items">
       <Setting
         label="Base Note"
         :options="allNotes"

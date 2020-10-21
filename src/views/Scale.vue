@@ -2,7 +2,7 @@
   <div>
     <h1>Scale Calculator</h1>
     <h2>Key</h2>
-    <div class="settings">
+    <div class="items">
       <Setting
         label="Home Note"
         :options="allNotes"
