@@ -26,7 +26,7 @@
 <script lang="ts">
 import Vue from 'vue';
 import { Note, Notes, NOTES } from '@/utils/constants';
-import { TriadType, getTriadNotes, getTriadSymbol } from '@/utils/chords';
+import { TriadType } from '@/utils/chords';
 import Setting from '@/components/Setting.vue';
 
 export default Vue.extend({
@@ -36,33 +36,35 @@ export default Vue.extend({
   },
   data(): {
     allNotes: Notes;
-    baseNote: Note;
     triadTypes: TriadType[];
-    triadType: TriadType;
     triadSymbol: string;
   } {
     return {
       allNotes: NOTES,
-      baseNote: 'C',
       triadTypes: ['major', 'minor', 'aug', 'dim', 'sus2', 'sus4'],
-      triadType: 'major',
       triadSymbol: 'C'
     };
   },
   computed: {
-    notes(): Note[] {
-      return getTriadNotes(this.baseNote, this.triadType);
+    baseNote() {
+      return this.$store.getters.chord.baseNote as Note;
     },
-    symbol(): string {
-      return getTriadSymbol(this.baseNote, this.triadType);
+    triadType() {
+      return this.$store.getters.chord.type as TriadType;
+    },
+    notes() {
+      return this.$store.getters.chordNotes as Note[];
+    },
+    symbol() {
+      return this.$store.getters.chordSymbol as string;
     }
   },
   methods: {
     onChangeBaseNote(value: Note) {
-      this.baseNote = value;
+      this.$store.commit('updateChordBaseNote', value);
     },
     onChangeType(value: TriadType) {
-      this.triadType = value;
+      this.$store.commit('updateChordType', value);
     }
   }
 });
