@@ -5,10 +5,16 @@
     <div class="items">
       <Setting
         label="Home Note"
+        :value="homeNote"
         :options="allNotes"
         @change="onChangeHomeNote"
       />
-      <Setting label="Type" :options="scaleTypes" @change="onChangeType" />
+      <Setting
+        label="Type"
+        :value="scaleType"
+        :options="scaleTypes"
+        @change="onChangeType"
+      />
     </div>
     <div>
       <h2>Notes</h2>

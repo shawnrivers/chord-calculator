@@ -5,10 +5,16 @@
     <div class="items">
       <Setting
         label="Base Note"
+        :value="baseNote"
         :options="allNotes"
         @change="onChangeBaseNote"
       />
-      <Setting label="Type" :options="triadTypes" @change="onChangeType" />
+      <Setting
+        label="Type"
+        :value="type"
+        :options="triadTypes"
+        @change="onChangeType"
+      />
     </div>
     <div>
       <h2>Symbol</h2>
@@ -49,7 +55,7 @@ export default Vue.extend({
     baseNote() {
       return this.$store.getters.chord.baseNote as Note;
     },
-    triadType() {
+    type() {
       return this.$store.getters.chord.type as TriadType;
     },
     notes() {

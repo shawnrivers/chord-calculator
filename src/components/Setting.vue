@@ -1,14 +1,20 @@
 <template>
   <div class="setting">
     <label :for="label">{{ `${label}: ` }}</label>
-    <select :id="label" @change="$emit('change', $event.target.value)">
+    <select
+      :id="label"
+      :value="value"
+      @change="$emit('change', $event.target.value)"
+    >
       <option v-for="option in options" :key="option">{{ option }}</option>
     </select>
   </div>
 </template>
 
 <script lang="ts">
-import Vue from 'vue';
+import Vue, { PropType } from 'vue';
+
+type Value = number | string;
 
 export default Vue.extend({
   name: 'Setting',
@@ -17,8 +23,12 @@ export default Vue.extend({
       type: String,
       required: true
     },
+    value: {
+      type: [Number, String] as PropType<Value>,
+      required: true
+    },
     options: {
-      type: Array,
+      type: Array as PropType<Value[]>,
       required: true
     }
   }
