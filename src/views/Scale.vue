@@ -44,14 +44,7 @@
 <script lang="ts">
 import Vue from 'vue';
 import { Note, Notes, NOTES } from '@/utils/constants';
-import {
-  ScaleType,
-  getScaleNotes,
-  TriadChord,
-  numOfScaleNotes,
-  getChordFromScale,
-  ChordNumber
-} from '@/utils/scales';
+import { ScaleType, TriadChord } from '@/utils/scales';
 import Setting from '@/components/Setting.vue';
 
 export default Vue.extend({
@@ -61,43 +54,33 @@ export default Vue.extend({
   },
   data(): {
     allNotes: Notes;
-    homeNote: Note;
     scaleTypes: ScaleType[];
-    scaleType: ScaleType;
   } {
     return {
       allNotes: NOTES,
-      homeNote: 'C',
-      scaleTypes: ['major', 'minor'],
-      scaleType: 'major'
+      scaleTypes: ['major', 'minor']
     };
   },
   computed: {
-    notes(): Note[] {
-      return getScaleNotes(this.homeNote, this.scaleType);
+    homeNote() {
+      return this.$store.getters.scale.homeNote as Note;
     },
-    chords(): TriadChord[] {
-      const chords: TriadChord[] = [];
-
-      for (let i = 0; i < numOfScaleNotes; i++) {
-        chords.push(
-          getChordFromScale(
-            this.homeNote,
-            this.scaleType,
-            (i + 1) as ChordNumber
-          )
-        );
-      }
-
-      return chords;
+    scaleType() {
+      return this.$store.getters.scale.type as ScaleType;
+    },
+    notes() {
+      return this.$store.getters.scaleNotes as Note[];
+    },
+    chords() {
+      return this.$store.getters.scaleChords as TriadChord[];
     }
   },
   methods: {
     onChangeHomeNote(value: Note) {
-      this.homeNote = value;
+      this.$store.commit('updateScaleHomeNote', value);
     },
     onChangeType(value: ScaleType) {
-      this.scaleType = value;
+      this.$store.commit('updateScaleType', value);
     }
   }
 });
